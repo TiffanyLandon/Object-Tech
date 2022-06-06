@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
+// The `/api/categories` endpoint
 
 // get all category
 router.get('/', (req, res) => {
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single category by its `id`
   // be sure to include its associated product
-  Catergory.findOne({
+  Category.findOne({
     where: {
       id: req.params.id
     },
@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Product,
-        attributes: ['id', 'product_name', 'price', 'stock'],
+        attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
       }
     ]
   })
